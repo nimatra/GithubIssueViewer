@@ -4,12 +4,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { GetIssuesFromServer } from '../actions';
 import {GithubState} from '../Store/GithubState';
+import {Issue} from '../Store/Issue';
+import {IssuesList} from './IssuesList';
 import {ActionGrade} from 'material-ui/lib/svg-icons';
 import {Card, CardActions, CardText, CardTitle, CardMedia, RaisedButton, IconButton, Styles, AppBar} from 'material-ui';
 
 interface IAppProps {
   dispatch?: (func: any) => void;
-  allIssues?: string[];
+  allIssues?: Issue[];
 }
 
 const contentStyle = {
@@ -51,23 +53,13 @@ export class App extends React.Component<IAppProps, {}> {
 
     return (
       <div style={contentStyle}>
-      <AppBar title='One wise An said'
+      <AppBar title=''
               iconElementRight={
-                <IconButton onClick={() => window.location.href = 'https://github.com/nimatra/areyouantoday'}>
+                <IconButton onClick={() => window.location.href = 'https://github.com/nimatra/githubissuesviewer'}>
                 <img src='/public/github.png' />
                 </IconButton>}
                            />
-        <Card style={cardStyle}>
-          <CardTitle></CardTitle>
-          <CardMedia overlay={<CardTitle title='' subtitle='' />}>
-            <img src={allIssues[0]} />
-          </CardMedia>
-          <CardActions>
-              <IconButton tooltip='' touch={true} tooltipPosition='top-right'>
-                <ActionGrade />
-              </IconButton>
-          </CardActions>
-        </Card>
+        <IssuesList allIssues={allIssues}/>
       </div >
     );
   }

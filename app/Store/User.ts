@@ -1,6 +1,6 @@
 export class User{
       public login: string;
-      public id: string;
+      public id: number;
       public avatar_url: string;
       public gravatar_id: string;
       public url: string;

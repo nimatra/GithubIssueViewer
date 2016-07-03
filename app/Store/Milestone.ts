@@ -4,7 +4,7 @@ export class Milestone {
     public url: string;
     public html_url: string;
     public labels_url: string;
-    public id: string;
+    public id: number;
     public number: number;
     public state: string;
     public title: string;
