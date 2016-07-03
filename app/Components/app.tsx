@@ -55,7 +55,7 @@ export class App extends React.Component<IAppProps, {}> {
       <div style={contentStyle}>
       <AppBar title=''
               iconElementRight={
-                <IconButton onClick={() => window.location.href = 'https://github.com/nimatra/githubissuesviewer'}>
+                <IconButton onClick={() => window.location.href = 'https://github.com/nimatra/GithubIssueViewer'}>
                 <img src='/public/github.png' />
                 </IconButton>}
                            />
