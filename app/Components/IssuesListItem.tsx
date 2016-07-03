@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import { GetIssuesFromServer } from '../actions';
 import {GithubState} from '../Store/GithubState';
 import {Issue} from '../Store/Issue';
+import {Labels} from './Labels';
+
 import {ActionDescription} from 'material-ui/lib/svg-icons';
-import {NavigationMoreVert} from 'material-ui/lib/svg-icons/navigation/more-vert';
 import {Card, CardActions, CardText, CardTitle, CardMedia} from 'material-ui';
-import {RaisedButton, IconButton, Styles, AppBar} from 'material-ui';
-import {ListItem, Divider, ListDivider} from 'material-ui';
+import {RaisedButton, IconButton, AppBar} from 'material-ui';
+import {Colors} from 'material-ui/lib/styles';
+import {ListItem, Divider} from 'material-ui';
 import {Avatar, IconMenu, MenuItem} from 'material-ui';
 
 
@@ -27,7 +29,7 @@ const iconButtonElement = (
         tooltip='Details'
         tooltipPosition='top-right'
         >
-        <ActionDescription color={Styles.Colors.grey400} />
+        <ActionDescription color={Colors.grey400} />
     </IconButton>
 );
 
@@ -56,11 +58,12 @@ export class IssuesListItem extends React.Component<IIssuesListItemProps, {}> {
                     rightIconButton={rightIconMenu}
                     secondaryText={
                         <p>
-                            <span style={{ color: Styles.Colors.darkBlack }}>{issue.body.substr(9, 140)}</span>
+                            <span style={{ color: Colors.darkBlack }}>{issue.body.substr(0, 140)}</span>
                         </p>
                     }
                     secondaryTextLines={5}
                     />
+                    <Labels allLabels={issue.labels}/>
             </div>
         );
     }

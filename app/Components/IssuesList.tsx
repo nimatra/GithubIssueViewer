@@ -7,9 +7,10 @@ import {GithubState} from '../Store/GithubState';
 import {Issue} from '../Store/Issue';
 import {IssuesListItem} from './IssuesListItem';
 import {ActionGrade} from 'material-ui/lib/svg-icons';
+import {Colors} from 'material-ui/lib/styles';
 import {Card, CardActions, CardText, CardTitle, CardMedia} from 'material-ui';
-import {RaisedButton, IconButton, Styles, AppBar} from 'material-ui';
-import {List, ListItem, Divider, ListDivider} from 'material-ui';
+import {RaisedButton, IconButton, AppBar} from 'material-ui';
+import {List, ListItem, Divider} from 'material-ui';
 
 
 interface IIssuesListProps {
@@ -42,11 +43,11 @@ export class IssuesList extends React.Component<IIssuesListProps, {}> {
         var issues = [];
         allIssues.forEach(element => {
             issues.push(<IssuesListItem issue={element}/>)
-            issues.push(<ListDivider inset={true} />);
+            issues.push(<Divider inset={true} />);
         });
         return (
             <div style={contentStyle}>
-                <List subheader={'Today'}>
+                <List>
                     {issues}
                 </List>
             </div >

@@ -7,7 +7,8 @@ import {GithubState} from '../Store/GithubState';
 import {Issue} from '../Store/Issue';
 import {IssuesList} from './IssuesList';
 import {ActionGrade} from 'material-ui/lib/svg-icons';
-import {Card, CardActions, CardText, CardTitle, CardMedia, RaisedButton, IconButton, Styles, AppBar} from 'material-ui';
+import {Colors} from 'material-ui/lib/styles';
+import {IconButton, AppBar} from 'material-ui';
 
 interface IAppProps {
   dispatch?: (func: any) => void;
@@ -16,15 +17,6 @@ interface IAppProps {
 
 const contentStyle = {
   margin: '10px'
-};
-const cardStyle = {
-    'marginTop': '10px',
-    'marginBottom': '10px',
-};
-const deleteStyle = {
-    'margin': '0',
-    'padding': '0',
-    'width': '50px',
 };
 
 function select(state: GithubState): IAppProps {
@@ -53,12 +45,12 @@ export class App extends React.Component<IAppProps, {}> {
 
     return (
       <div style={contentStyle}>
-      <AppBar title=''
-              iconElementRight={
-                <IconButton onClick={() => window.location.href = 'https://github.com/nimatra/GithubIssueViewer'}>
-                <img src='/public/github.png' />
-                </IconButton>}
-                           />
+        <AppBar title='Github Issue Viewer'
+          iconElementRight={
+            <IconButton onClick={() => window.location.href = 'https://github.com/nimatra/GithubIssueViewer'}>
+              <img src='/public/github.png' />
+            </IconButton>}
+          />
         <IssuesList allIssues={allIssues}/>
       </div >
     );
