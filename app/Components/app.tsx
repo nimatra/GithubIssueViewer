@@ -30,7 +30,7 @@ export class App extends React.Component<IAppProps, {}> {
   private smDisplayName: string;
   public componentDidMount() {
     const {dispatch, allIssues} = this.props;
-    if (allIssues == null || allIssues[0] === undefined) {
+    if (allIssues == null || allIssues[1] === undefined) {
       dispatch(GetIssuesFromServer());
     }
   }
@@ -51,7 +51,7 @@ export class App extends React.Component<IAppProps, {}> {
               <img src='/public/github.png' />
             </IconButton>}
           />
-        <IssuesList allIssues={allIssues}/>
+        <IssuesList allIssues={allIssues} dispatch={dispatch}/>
       </div >
     );
   }

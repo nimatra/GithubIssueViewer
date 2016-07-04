@@ -2,8 +2,7 @@ var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
 var config = require('./config/webpack.prod');
-var authenticate = require('./routes/authenticate');
-var socialMemoryApi = require('./Routes/SocialMemoryApi');
+var githubApi = require('./Routes/GithubApi');
 var bodyParser = require('body-parser');
 
 var app = express();
@@ -25,14 +24,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 var addinRouter = express.Router({ mergeParams: true });
 
-app.use('/api', socialMemoryApi);
-
-app.use('/add', addinRouter);
-var addin = function (req, res) {
-  res.send("hey")
-}
-addinRouter.use('/test', addin);
-//
+app.use('/api', githubApi);
 
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/static', express.static(__dirname + '/static'));

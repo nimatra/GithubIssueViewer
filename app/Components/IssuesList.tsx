@@ -42,7 +42,7 @@ export class IssuesList extends React.Component<IIssuesListProps, {}> {
         var { dispatch, allIssues }: any = this.props;
         var issues = [];
         allIssues.forEach(element => {
-            issues.push(<IssuesListItem issue={element}/>)
+            issues.push(<IssuesListItem issue={element} dispatch={dispatch}/>)
             issues.push(<Divider inset={true} />);
         });
         return (

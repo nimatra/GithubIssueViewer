@@ -41,7 +41,8 @@ const store: Store = configureStore();
 class Main extends React.Component<{}, {}> {
   public render(): React.ReactElement<Provider> {
     return (<Provider store={store}>
-      <App/>
+      <Router history={browserHistory}
+        routes={Routes}/>
     </Provider>);
   }
 }

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { GetIssuesFromServer } from '../actions';
+import { viewIssue } from '../actions';
 import {GithubState} from '../Store/GithubState';
 import {Issue} from '../Store/Issue';
 import {Labels} from './Labels';
@@ -13,7 +13,7 @@ import {RaisedButton, IconButton, AppBar} from 'material-ui';
 import {Colors} from 'material-ui/lib/styles';
 import {ListItem, Divider} from 'material-ui';
 import {Avatar, IconMenu, MenuItem} from 'material-ui';
-
+import { browserHistory } from 'react-router';
 
 interface IIssuesListItemProps {
     dispatch?: (func: any) => void;
@@ -51,20 +51,25 @@ export class IssuesListItem extends React.Component<IIssuesListItemProps, {}> {
         var { dispatch, issue }: IIssuesListItemProps = this.props;
 
         return (
-            <div>
+            <div onClick={() => this.goToDetails(this.props)}>
                 <ListItem
                     leftAvatar={<Avatar src={issue.user.avatar_url} />}
-                    primaryText={issue.title}
+                    primaryText={'@' + issue.user.login}
                     rightIconButton={rightIconMenu}
                     secondaryText={
                         <p>
-                            <span style={{ color: Colors.darkBlack }}>{issue.body.substr(0, 140)}</span>
+                            <span style={{ color: Colors.darkBlack }}>{issue.title}</span> -- 
+                            {issue.body.substr(0, 140)}
                         </p>
                     }
                     secondaryTextLines={5}
                     />
-                    <Labels allLabels={issue.labels}/>
+                    <Labels allLabels={issue.labels} dispatch={dispatch}/>
             </div>
         );
+    }
+    private goToDetails(props: IIssuesListItemProps): void{
+        props.dispatch(viewIssue(props.issue));
+        browserHistory.push('/details');
     }
 }

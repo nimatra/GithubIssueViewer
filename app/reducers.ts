@@ -10,6 +10,7 @@ import {PullRequest} from './Store/PullRequest';
 import { IGetAllIssuesAction, IIssueAction, ACTION } from './actions';
 
 export const initialState: GithubState = {
+  activeIssue: <Issue>{},
   allIssues: [
     {
       id: 1,
@@ -115,12 +116,12 @@ export const initialState: GithubState = {
       created_at: '2011-04-22T13:33:48Z',
       updated_at: '2011-04-22T13:33:48Z',
     }
-  ] as Issue[]
+  ] as Issue[],
 };
 
 function githubIssuesReducer(state: Issue[] = initialState.allIssues, action: IGetAllIssuesAction): Issue[] {
   switch (action.type) {
-    case ACTION.Issues_ReceivedFromServer:
+    case ACTION.IssuesReceivedFromServer:
       return Object.assign(
         <Issue[]>[],
         state,
@@ -131,6 +132,19 @@ function githubIssuesReducer(state: Issue[] = initialState.allIssues, action: IG
   }
 }
 
+function viewIssueReducer(state: Issue = initialState.activeIssue, action: IIssueAction): Issue {
+  switch (action.type) {
+    case ACTION.ViewIssue:
+      return Object.assign(
+        <Issue>{},
+        action.issue
+      );
+    default:
+      return state;
+  }
+}
+
 export const githubReducer: Reducer = combineReducers({
+  activeIssue: viewIssueReducer,
   allIssues: githubIssuesReducer,
 });

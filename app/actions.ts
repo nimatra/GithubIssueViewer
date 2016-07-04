@@ -1,5 +1,5 @@
 /// <reference path="../typings/tsd.d.ts" />
-export enum ACTION { Issues_ReceivedFromServer, AddIssue, ViewIssue }
+export enum ACTION { GetIssues, GetComments, ViewIssue, IssuesReceivedFromServer }
 import { GithubState } from './Store/GithubState';
 import {Issue} from './Store/Issue';
 import thunk from 'redux-thunk';
@@ -14,19 +14,29 @@ export interface IGetAllIssuesAction {
   issues?: Issue[];
 }
 
-export function GetIssuesFromServer() {
+export function GetIssuesFromServer(page: number = 0) {
   return dispatch => {
-      dispatch(updateIssues([null]));
-    //get images from server
+    fetch(
+      "http://localhost:3000/api/getIssues?" +
+            "page=" + page
+    )
+      .then(response => response.json())
+      .then(json => dispatch(updateIssues(json)));
   };
 }
 
-export function addIssue(issue: Issue): IIssueAction {
-  return {
-    issue: issue,
-    type: ACTION.AddIssue,
+export function GetCommentsFromServer(issueId: number, page: number = 0) {
+  return dispatch => {
+    fetch(
+      "http://localhost:3000/api/getComments/" +
+            issueId +
+            "/comments" + 
+            "?page=" + page
+    )
+      .then(response => response.json())
+      .then(json => dispatch(updateIssues(json)));
   };
-};
+}
 
 export function viewIssue(issue: Issue): IIssueAction {
   return {
@@ -38,6 +48,6 @@ export function viewIssue(issue: Issue): IIssueAction {
 export function updateIssues(json: Issue[]): IGetAllIssuesAction {
   return {
     issues: json,
-    type: ACTION.Issues_ReceivedFromServer,
+    type: ACTION.IssuesReceivedFromServer,
   };
 };
