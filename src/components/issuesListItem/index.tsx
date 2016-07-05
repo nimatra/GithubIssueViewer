@@ -21,23 +21,24 @@ interface IIssuesListItemProps {
 const contentStyle = {
     margin: '10px'
 };
+
 const iconButtonElement = (
-    <IconButton
-        touch={true}
-        tooltip="Details"
-        tooltipPosition="top-right"
-        >
+    <IconButton>
         <ActionDescription color={colors.grey400} />
     </IconButton>
 );
 
-const rightIconMenu = (
-    <IconMenu iconButtonElement={iconButtonElement}>
-        <MenuItem>Reply</MenuItem>
-        <MenuItem>Forward</MenuItem>
-        <MenuItem>Delete</MenuItem>
-    </IconMenu>
-);
+/**
+ * 
+ * Renders an issue. 
+ * Issue Number and Title
+ * Labels, 
+ * Reporters UserName and Gavatar
+ * The first 140 character of the summary
+ * @export
+ * @class IssuesListItem
+ * @extends {React.Component<IIssuesListItemProps, {}>}
+ */
 export class IssuesListItem extends React.Component<IIssuesListItemProps, {}> {
 
     public shouldComponentUpdate(nextProps: IIssuesListItemProps, nextState: any) {
@@ -48,22 +49,31 @@ export class IssuesListItem extends React.Component<IIssuesListItemProps, {}> {
     public render(): React.ReactElement<{}> {
         let { issue, dispatch }: IIssuesListItemProps = this.props;
 
+        //trim the string to the maximum length
+        let trimmedString = issue.body.substr(0, 140);
+
+        //re-trim if we are in the middle of a word
+        trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
+        if (issue.body.length > trimmedString.length) {
+            trimmedString += '...';
+        }
+
         return (
-            <div onClick={() => this.goToDetails(this.props)}>
+            <div onClick={() => this.goToDetails(this.props) }>
                 <ListItem
                     leftAvatar={<Avatar src={issue.user.avatar_url} />}
-                    primaryText={'@' + issue.user.login}
-                    rightIconButton={rightIconMenu}
+                    primaryText={'@' + issue.user.login + " -- " + issue.id}
+                    rightIconButton={iconButtonElement}
                     secondaryText={
                         <p>
-                            <span style={{ color: colors.darkBlack }}>{issue.title}</span> -- 
-                            {issue.body.substr(0, 140)}
+                            <span style={{ color: colors.darkBlack }}>{issue.title}</span> --
+                            {trimmedString}
                         </p>
                     }
                     secondaryTextLines={5}
                     />
-                    <Labels allLabels={issue.labels}/>
-                    {this.props.children}
+                <Labels allLabels={issue.labels}/>
+                {this.props.children}
             </div>
         );
     }

@@ -30,6 +30,13 @@ const deleteStyle = {
     'width': '50px',
 };
 
+/**
+ * 
+ * Renders a list of issues
+ * @export
+ * @class IssuesList
+ * @extends {React.Component<IIssuesListProps, {}>}
+ */
 export class IssuesList extends React.Component<IIssuesListProps, {}> {
 
     public shouldComponentUpdate(nextProps: IIssuesListProps, nextState: any) {

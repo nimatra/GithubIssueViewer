@@ -22,22 +22,22 @@ export const INITIAL_STATE = {
 
 export interface IIssueAction {
   type: any;
-  activeIssue?: Issue;
+  payload?: Issue;
 }
 
 export interface IGetAllIssuesAction {
   type: any;
-  allIssues?: Issue[];
+  payload?: Issue[];
 }
 
 export interface IGetCommentsAction {
   type: any;
-  comments?: Comment[];
+  payload?: Comment[];
 }
 
 export interface IChangePageAction {
   type: any;
-  pageNumber?: number;
+  payload?: number;
 }
 
 /**
@@ -53,7 +53,7 @@ function githubIssuesReducer(state: Issue[] = INITIAL_STATE.allIssues, action: I
       return Object.assign(
         <Issue[]>[],
         state,
-        action.allIssues
+        action.payload
       );
     default:
       return state;
@@ -73,7 +73,7 @@ function commentsReducer(state: Comment[] = INITIAL_STATE.comments, action: IGet
       return Object.assign(
         <Comment[]>[],
         state,
-        action.comments
+        action.payload
       );
     default:
       return state;
@@ -92,7 +92,7 @@ function viewIssueReducer(state: Issue = INITIAL_STATE.activeIssue, action: IIss
     case VIEW_ISSUE:
       return Object.assign(
         <Issue>{},
-        action.activeIssue
+        action.payload
       );
     default:
       return state;
@@ -109,7 +109,7 @@ function viewIssueReducer(state: Issue = INITIAL_STATE.activeIssue, action: IIss
 function goToPageNumber(state: number = INITIAL_STATE.pageNumber, action: IChangePageAction): number {
   switch (action.type) {
     case GOTO_PAGE:
-      return action.pageNumber;
+      return action.payload;
     default:
       return state;
   }

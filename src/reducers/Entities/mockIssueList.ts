@@ -1,10 +1,8 @@
-
 import {Issue} from './Issue';
 import {User} from './User';
 import {Label} from './Label';
 import {Milestone} from './Milestone';
 import {PullRequest} from './PullRequest';
-import { Comment } from './Comment';
 
 export default [
     {

@@ -8,7 +8,7 @@ import {colors} from 'material-ui/styles';
 
 interface ICommentProps extends React.Props<{}> {
     dispatch?: (func: any) => void;
-    comment: Comment;
+    comment?: Comment;
 };
 const cardStyle = {
     'marginTop': '10px',
@@ -20,6 +20,15 @@ const deleteStyle = {
     'width': '50px'
 };
 
+/**
+ * 
+ * Renders an issue comment
+ * Commentor's UserName and Gavatar
+ * The body of the comment (not exceeding 20 lines)
+ * @export
+ * @class IssueComment
+ * @extends {React.Component<ICommentProps, {}>}
+ */
 export class IssueComment extends React.Component<ICommentProps, {}> {
     public render(): React.ReactElement<{}> {
         const {dispatch, comment} = this.props;
@@ -32,8 +41,8 @@ export class IssueComment extends React.Component<ICommentProps, {}> {
                             <span style={{ color: colors.darkBlack }}>{comment.body}</span>
                         </p>
                     }
-                    secondaryTextLines={10}
-                    />
+                    secondaryTextLines={20}/>
+                    {this.props.children}
         </div>;
     }
 };
