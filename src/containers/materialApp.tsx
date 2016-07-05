@@ -26,11 +26,12 @@ const pageStyle = {
   'margin-right': '40px',
   'vertical-align': 'middle',
 };
+
 const buttonStyle = {
   margin: '20px',
   height: '20px',
   width: '20px',
-}
+};
 
 /**
  * 
@@ -43,7 +44,7 @@ function mapStateToProps(state) {
     allIssues: state.github.allIssues,
     pageNumber: state.github.pageNumber,
   };
-}
+};
 
 /**
  * 
@@ -53,10 +54,10 @@ function mapStateToProps(state) {
  */
 function mapDispatchToProps(dispatch) {
   return {
-    goToPage: (page: number) => { if (page > 0) { dispatch(GetIssuesFromServer(page)); dispatch(updatePageNumber(page)) } },
+    goToPage: (page: number) => { if (page > 0) { dispatch(GetIssuesFromServer(page)); dispatch(updatePageNumber(page)); } },
     viewIssue: (issue: Issue) => dispatch(viewIssue(issue)),
   };
-}
+};
 
 /**
  * 
@@ -72,7 +73,7 @@ export class App extends React.Component<IAppProps, void> {
     let {allIssues, dispatch} = this.props;
     let {goToPage} = mapDispatchToProps(dispatch);
 
-    if (allIssues == undefined || allIssues == null || allIssues[0] === undefined) {
+    if (allIssues === undefined || allIssues == null || allIssues[0] === undefined) {
       goToPage(1);
     }
   }
@@ -84,12 +85,12 @@ export class App extends React.Component<IAppProps, void> {
     return (
       <div style={contentStyle}>
         <IssuesList allIssues={allIssues} dispatch={dispatch}/>
-        <RaisedButton secondary={true} style={buttonStyle} label='-'
+        <RaisedButton secondary={true} style={buttonStyle} label="-"
           onClick={() => goToPage(pageNumber - 1) }/>
 
         <Avatar style={pageStyle}>{page}</Avatar>
         <RaisedButton primary={true} style={buttonStyle}
-          onClick={() => goToPage(pageNumber + 1) } label='+'/>
+          onClick={() => goToPage(pageNumber + 1) } label="+"/>
       </div>
     );
   };

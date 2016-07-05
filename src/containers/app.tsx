@@ -28,10 +28,10 @@ export class App extends React.Component<IAppProps, void> {
   render() {
     return (
       <div>
-        <AppBar title='Github Issue Viewer' style={appBarStyle}
+        <AppBar title="Github Issue Viewer" style={appBarStyle}
           iconElementRight={
             <IconButton onClick={() => window.location.href = 'https://github.com/nimatra/GithubIssueViewer'}>
-              <img src='/public/github.png' />
+              <img src="/public/github.png" />
             </IconButton>}
           />
         <Provider store={ store }>

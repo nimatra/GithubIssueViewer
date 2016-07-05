@@ -6,7 +6,7 @@ import IssueDetails from '../containers/IssueDetails';
 
 
 export default (
-    <Route path='/'>
-        <Route path='app' component={App}/>
-        <Route path='details' component={IssueDetails}/>
+    <Route path="/">
+        <Route path="app" component={App}/>
+        <Route path="details" component={IssueDetails}/>
     </Route>);

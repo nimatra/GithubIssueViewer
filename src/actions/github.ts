@@ -52,7 +52,7 @@ export function GetCommentsFromServer(url: string) {
  */
 export function viewIssue(issue: Issue) {
   return dispatch => {
-    dispatch({ payload: issue, type: VIEW_ISSUE })
+    dispatch({ payload: issue, type: VIEW_ISSUE });
   };
 };
 
@@ -65,7 +65,7 @@ export function viewIssue(issue: Issue) {
  */
 export function updateIssues(json: Issue[]) {
   return dispatch => {
-    dispatch({ payload: json, type: GET_ISSUES })
+    dispatch({ payload: json, type: GET_ISSUES });
   };
 };
 
@@ -78,7 +78,7 @@ export function updateIssues(json: Issue[]) {
  */
 export function updateComments(json: Comment[]) {
   return dispatch => {
-    dispatch({ payload: json, type: GET_COMMENTS })
+    dispatch({ payload: json, type: GET_COMMENTS });
   };
 };
 
@@ -91,6 +91,6 @@ export function updateComments(json: Comment[]) {
  */
 export function updatePageNumber(json: number) {
   return dispatch => {
-    dispatch({ payload: json, type: GOTO_PAGE })
+    dispatch({ payload: json, type: GOTO_PAGE });
   };
 };

@@ -28,7 +28,7 @@ const gavatarStyle = {
     'border-radius': '25px',
     '-webkit-border-radius': '25px',
     '-moz-border-radius': '25px',
-}
+};
 
 const iconButtonElement = (
     <IconButton>
@@ -57,11 +57,11 @@ export class IssuesListItem extends React.Component<IIssuesListItemProps, {}> {
     public render(): React.ReactElement<{}> {
         let { issue, dispatch }: IIssuesListItemProps = this.props;
 
-        //trim the string to the maximum length
+        // trim the string to the maximum length
         let trimmedString = issue.body.substr(0, 140);
 
-        //re-trim if we are in the middle of a word
-        trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
+        // re-trim if we are in the middle of a word
+        trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(' ')));
         if (issue.body.length > trimmedString.length) {
             trimmedString += '...';
         }
@@ -75,7 +75,7 @@ export class IssuesListItem extends React.Component<IIssuesListItemProps, {}> {
                                 src={issue.user.avatar_url}
                                 onClick={() => window.location.href = issue.user.html_url} />
                         </Avatar>}
-                    primaryText={<p><a href={issue.user.html_url}>@{issue.user.login}</a> -- {issue.id}</p>}
+                    primaryText={<p><a href={issue.user.html_url}> @{issue.user.login}</a> --{issue.id}</p>}
                     rightIconButton={iconButtonElement}
                     secondaryText={
                         <p>

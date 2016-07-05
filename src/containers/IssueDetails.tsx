@@ -61,22 +61,22 @@ export default class IssueDetails extends React.Component<IIssueDetailsProps, {}
             return null;
         }
         let commentList = [];
-        if (comments != null && comments[0] != undefined) {
+        if (comments != null && comments[0] !== undefined) {
             comments.forEach(element => {
-                commentList.push(<IssueComment comment={element} dispatch={dispatch}/>)
+                commentList.push(<IssueComment comment={element} dispatch={dispatch}/>);
                 commentList.push(<Divider inset={true} />);
             });
-        }else{
-            if(issue.comments > 0){
+        } else {
+            if (issue.comments > 0) {
                 dispatch(GetCommentsFromServer(issue.comments_url));
             }
         }
-        // onExpandChange={() => window.location.href = issue.user.html_url}
+        
         return (
             <div style={contentStyle}>
                 <Card>
                     <CardHeader
-                        title={<a href={issue.user.html_url}>@{issue.user.login}</a>}
+                        title={<a href={issue.user.html_url}> @{issue.user.login}</a>}
                         avatar={issue.user.avatar_url}
                         />
                     <CardTitle title={issue.title} subtitle={issue.state} />
