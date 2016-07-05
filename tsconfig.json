@@ -1,8 +1,25 @@
 {
+  "compileOnSave": false,
+  "buildOnSave": false,
   "compilerOptions": {
-    "target": "ES6",
-    "jsx": "preserve",
-    "experimentalDecorators": true
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "sourceMap": false,
+    "inlineSourceMap": true,
+    "noEmitHelpers": false
   },
-  "exclude": ["node_modules", "config", "server.js"]
+  "awesomeTypescriptLoaderOptions": {
+    "useBabel": true,
+    "useCache": false,
+    "emitRequireType": false
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
