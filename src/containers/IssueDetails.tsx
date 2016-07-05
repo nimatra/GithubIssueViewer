@@ -76,7 +76,7 @@ export default class IssueDetails extends React.Component<IIssueDetailsProps, {}
             <div style={contentStyle}>
                 <Card>
                     <CardHeader
-                        title={'@' + issue.user.login}
+                        title={<a href={issue.user.html_url}>@{issue.user.login}</a>}
                         avatar={issue.user.avatar_url}
                         />
                     <CardTitle title={issue.title} subtitle={issue.state} />

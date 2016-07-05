@@ -22,6 +22,14 @@ const contentStyle = {
     margin: '10px'
 };
 
+const gavatarStyle = {
+    width: '50px',
+    height: '40px',
+    'border-radius': '25px',
+    '-webkit-border-radius': '25px',
+    '-moz-border-radius': '25px',
+}
+
 const iconButtonElement = (
     <IconButton>
         <ActionDescription color={colors.grey400} />
@@ -33,7 +41,7 @@ const iconButtonElement = (
  * Renders an issue. 
  * Issue Number and Title
  * Labels, 
- * Reporters UserName and Gavatar
+ * Reporters UserName and Gavatar, clicking on the Gavatar loads user's page
  * The first 140 character of the summary
  * @export
  * @class IssuesListItem
@@ -61,8 +69,13 @@ export class IssuesListItem extends React.Component<IIssuesListItemProps, {}> {
         return (
             <div onClick={() => this.goToDetails(this.props) }>
                 <ListItem
-                    leftAvatar={<Avatar src={issue.user.avatar_url} />}
-                    primaryText={'@' + issue.user.login + " -- " + issue.id}
+                    leftAvatar={
+                        <Avatar>
+                            <img style={gavatarStyle}
+                                src={issue.user.avatar_url}
+                                onClick={() => window.location.href = issue.user.html_url} />
+                        </Avatar>}
+                    primaryText={<p><a href={issue.user.html_url}>@{issue.user.login}</a> -- {issue.id}</p>}
                     rightIconButton={iconButtonElement}
                     secondaryText={
                         <p>
